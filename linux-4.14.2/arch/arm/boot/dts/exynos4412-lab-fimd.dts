@@ -176,6 +176,38 @@
                 bus-width = <8>;
                 cap-mmc-highspeed;
         };
+	usbphy:usbphy@125B0000{
+        	#address-cells=<1>;
+        	#size-cells=<1>;
+                compatible="samsung,exynos4x12-usb2phy";
+                reg=<0x125B0000 0x100>;
+                ranges;
+
+                clocks=<&clock 2>,<&clock 305>;
+                clock-names="xusbxti","otg";
+
+                usbphy-sys{
+                        reg=<0x10020704 0x8 0x1001021c 0x4>;
+                };
+    	};
+       ehci@12580000{
+            	status="okay";
+            	usbphy=<&usbphy>;
+       };
+       usb3503@08{
+            	compatible="smsc,usb3503";
+            	reg=<0x08 0x4>;
+            	connect-gpios=<&gpm3 3 1>;
+          	intn-gpios=<&gpx2 3 1>;
+            	reset-gpios=<&gpm2 4 1>;
+            	initial-mode=<1>;
+       };
+
+	panel: panel {
+		compatible = "samsung,wxcatlcd";
+		//compatible = "samsung,ltn101nt05";
+	};
+
 };
 
 &adc {
@@ -275,11 +307,10 @@
 	status = "okay";
 };
 
-
 &fimd {
-    	pinctrl-0 = <&lcd_clk &lcd_data24 &pwm1_out>;
-    	pinctrl-names = "default";
-    	status = "okay";
+    pinctrl-0 = <&lcd_clk &lcd_data24 &pwm1_out>;
+    pinctrl-names = "default";
+    status = "okay";
 	
 	samsung,invert-vclk;
 	display-timings {
