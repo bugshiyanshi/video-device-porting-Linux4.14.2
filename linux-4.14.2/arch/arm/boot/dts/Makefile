@@ -160,7 +160,9 @@ dtb-$(CONFIG_ARCH_EXYNOS4) += \
 	exynos4412-itop-elite.dtb \
 	exynos4412-origen.dtb \
 	exynos4412-smdk4412.dtb \
-	exynos4412-tiny4412.dtb
+	exynos4412-tiny4412.dtb \
+	exynos4412-itop-fimd.dtb \
+	exynos4412-lab-fimd.dtb
 dtb-$(CONFIG_ARCH_EXYNOS5) += \
 	exynos5250-arndale.dtb \
 	exynos5250-smdk5250.dtb \
